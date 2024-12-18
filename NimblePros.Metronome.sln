@@ -6,15 +6,18 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_solutionItems", "_solutionItems", "{EDED860E-4250-4A99-B39A-1B5A28495EA3}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B21754F6-D8B3-44B4-B3CB-EC8D932416BD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{CDE413E2-780B-45B6-992D-F736F699F85D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{CDE413E2-780B-45B6-992D-F736F699F85D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7C027EB1-662A-48A9-81F0-77CD01D92121}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NimblePros.Metronome", "src\NimblePros.Metronome\NimblePros.Metronome.csproj", "{353A3796-16D4-439E-A166-7265D1B94C91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metronome.Sample1", "sample\Metronome.Sample1\Metronome.Sample1.csproj", "{23E8544F-21FB-47BF-8FAE-E6849917BA01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,11 +29,16 @@ Global
 		{353A3796-16D4-439E-A166-7265D1B94C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{353A3796-16D4-439E-A166-7265D1B94C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{353A3796-16D4-439E-A166-7265D1B94C91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{353A3796-16D4-439E-A166-7265D1B94C91} = {B21754F6-D8B3-44B4-B3CB-EC8D932416BD}
+		{23E8544F-21FB-47BF-8FAE-E6849917BA01} = {CDE413E2-780B-45B6-992D-F736F699F85D}
 	EndGlobalSection
 EndGlobal

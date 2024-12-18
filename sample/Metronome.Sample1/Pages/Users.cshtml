@@ -1,0 +1,48 @@
+﻿@page
+@model MetricTesting2.Pages.UsersModel
+
+@{
+    ViewData["Title"] = "Users";
+}
+
+<h1>Users</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppRole[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppRole[0].NormalizedName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppRole[0].ConcurrencyStamp)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.AppRole) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NormalizedName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

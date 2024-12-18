@@ -2,6 +2,6 @@
 
 public class DbCallCounter
 {
-    public int CallCount { get; set; }
-    public long TotalTimeMs { get; internal set; }
+  public int CallCount { get; internal set; }
+  public TimeSpan TotalTimeSpan { get; internal set; }
 }

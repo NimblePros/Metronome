@@ -5,12 +5,46 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  
+
+  <PropertyGroup>
+    <PackageId>NimblePros.Metronome</PackageId>
+    <Title>NimblePros.Metronome</Title>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Steve Smith (@ardalis)</Authors>
+    <Company>NimblePros.com</Company>
+    <PackageProjectUrl>https://github.com/NimblePros/Metronome</PackageProjectUrl>
+    <Description>A simple package by @ardalis and @nimblepros with guard clause helper methods. See docs for how to extend using your own extension methods defined in your project.</Description>
+    <Summary>A simple package with guard clause helper methods. See docs for how to extend using your own extension methods.</Summary>
+    <RepositoryUrl>https://github.com/NimblePros/Metronome</RepositoryUrl>
+    <PackageTags>performance metrics timing logging diagnostics dataaccess</PackageTags>
+    <PackageReleaseNotes>
+      * Initial release
+    </PackageReleaseNotes>
+    <Version>0.1.0</Version>
+    <AssemblyName>NimblePros.Metronome</AssemblyName>
+    <PackageIcon>icon.png</PackageIcon>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+  </PropertyGroup>
+
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" Visible="false" PackagePath="" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="">
+      <Link>Properties\README.md</Link>
+    </None>
+
   </ItemGroup>
 
 </Project>
