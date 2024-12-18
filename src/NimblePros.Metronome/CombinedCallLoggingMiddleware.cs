@@ -17,8 +17,16 @@ public class CombinedCallLoggingMiddleware
       HttpCallCounter httpCounter,
       ILogger<CombinedCallLoggingMiddleware> logger)
   {
+    context.Response.OnStarting(() =>
+    {
+      string message = $"DbCallCount={dbCounter.CallCount};DbCallDuration={dbCounter.TotalTimeSpan.TotalMilliseconds}ms;HttpCallCount={httpCounter.CallCount};HttpCallDuration={httpCounter.TotalTimeSpan.TotalMilliseconds}ms HttpCallCount: {httpCounter.CallCount}";
+
+      context.Response.Headers.Add("NimblePros.Metronome", message);
+      return Task.CompletedTask;
+    });
     await _next(context);
     bool verbose = false; // TODO: Read from configuration
+    bool addHeader = true; // TODO: Read from configuration
     if (dbCounter.CallCount > 0 || verbose)
     {
       logger.LogInformation($"Database calls: {dbCounter.CallCount}, Total time: {dbCounter.TotalTimeSpan.TotalMilliseconds} ms");
@@ -27,5 +35,6 @@ public class CombinedCallLoggingMiddleware
     {
       logger.LogInformation($"HTTP calls: {httpCounter.CallCount}, Total time: {httpCounter.TotalTimeSpan.TotalMilliseconds} ms");
     }
+
   }
 }
