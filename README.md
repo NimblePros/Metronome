@@ -61,6 +61,8 @@ builder.Services.AddHttpClient<IPostsService, PostsService>()
 
 ## Expected Output
 
+### Log Output
+
 When hitting individual pages or endpoints, you should see the following output in the console:
 
 ```
@@ -69,6 +71,14 @@ info: NimblePros.Metronome.CombinedCallLoggingMiddleware[0]
 info: NimblePros.Metronome.CombinedCallLoggingMiddleware[0]
       HTTP calls: 1, Total time: 222.3137 ms
 ```
+
+### HTTP Headers
+
+In addition, the information is added to a response header (unless configured not to do so):
+
+![image](https://github.com/user-attachments/assets/a2076ab9-0808-4515-976f-1e6a13951568)
+
+## Using the Information
 
 You can use this to identify slow pages or endpoints and optimize them by adding caching, combining queries, or reducing the number of HTTP calls.
 
