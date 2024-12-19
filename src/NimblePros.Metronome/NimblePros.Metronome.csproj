@@ -18,9 +18,9 @@
     <RepositoryUrl>https://github.com/NimblePros/Metronome</RepositoryUrl>
     <PackageTags>performance metrics timing logging diagnostics dataaccess</PackageTags>
     <PackageReleaseNotes>
-      * Initial release
+      * Added Response Header 
     </PackageReleaseNotes>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <AssemblyName>NimblePros.Metronome</AssemblyName>
     <PackageIcon>icon.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

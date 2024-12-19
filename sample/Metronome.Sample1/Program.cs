@@ -28,6 +28,8 @@ builder.Services.AddHttpClient<IPostsService, PostsService>()
     })
     .AddMetronomeHandler();
 
+builder.Services.AddHttpClient(); // TODO: configure the default client
+
 builder.Services.AddHttpClient("Foo")
     .AddMetronomeHandler();
 
