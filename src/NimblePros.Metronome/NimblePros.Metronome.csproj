@@ -18,9 +18,9 @@
     <RepositoryUrl>https://github.com/NimblePros/Metronome</RepositoryUrl>
     <PackageTags>performance metrics timing logging diagnostics dataaccess</PackageTags>
     <PackageReleaseNotes>
-      * Added Response Header 
+      * Added better extension method for tracking DbContext calls (#9)
     </PackageReleaseNotes>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <AssemblyName>NimblePros.Metronome</AssemblyName>
     <PackageIcon>icon.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>

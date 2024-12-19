@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SqliteConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>((provider, options) =>
     options.UseSqlite(connectionString)
-        .AddInterceptors(provider.GetRequiredService<DbCallCountingInterceptor>())
+    .AddMetronomeDbTracking(provider)
     );
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

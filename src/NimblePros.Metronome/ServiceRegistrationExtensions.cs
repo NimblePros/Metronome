@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NimblePros.Metronome;
 
@@ -18,5 +19,10 @@ public static class ServiceRegistrationExtensions
   public static IHttpClientBuilder AddMetronomeHandler(this IHttpClientBuilder builder)
   {
     return builder.AddHttpMessageHandler<HttpCallCountingHandler>();
+  }
+
+  public static DbContextOptionsBuilder AddMetronomeDbTracking(this DbContextOptionsBuilder builder, IServiceProvider provider)
+  {
+    return builder.AddInterceptors(provider.GetRequiredService<DbCallCountingInterceptor>());
   }
 }
