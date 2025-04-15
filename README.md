@@ -38,7 +38,7 @@ if (app.Environment.IsDevelopment())
 ```csharp
 builder.Services.AddDbContext<ApplicationDbContext>((provider, options) =>
     options.UseSqlite(connectionString) // or any other provider
-        .AddInterceptors(provider.GetRequiredService<DbCallCountingInterceptor>())
+        .AddMetronomeDbTracking(provider)
     );
 ```
 
