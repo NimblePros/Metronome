@@ -3,7 +3,8 @@
     "path": "NimblePros.Metronome.sln",
     "projects": [
       "sample\\Metronome.Sample1\\Metronome.Sample1.csproj",
-      "src\\NimblePros.Metronome\\NimblePros.Metronome.csproj"
+      "src\\NimblePros.Metronome\\NimblePros.Metronome.csproj",
+      "tests\\NimblePros.Metronome.Tests\\NimblePros.Metronome.Tests.csproj"
     ]
   }
 }

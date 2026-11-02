@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NimblePros.Metronome", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metronome.Sample1", "sample\Metronome.Sample1\Metronome.Sample1.csproj", "{23E8544F-21FB-47BF-8FAE-E6849917BA01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NimblePros.Metronome.Tests", "tests\NimblePros.Metronome.Tests\NimblePros.Metronome.Tests.csproj", "{FD08AD6B-7F72-4D95-91F2-8790E6025AA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23E8544F-21FB-47BF-8FAE-E6849917BA01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD08AD6B-7F72-4D95-91F2-8790E6025AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD08AD6B-7F72-4D95-91F2-8790E6025AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD08AD6B-7F72-4D95-91F2-8790E6025AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD08AD6B-7F72-4D95-91F2-8790E6025AA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,5 +46,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{353A3796-16D4-439E-A166-7265D1B94C91} = {B21754F6-D8B3-44B4-B3CB-EC8D932416BD}
 		{23E8544F-21FB-47BF-8FAE-E6849917BA01} = {CDE413E2-780B-45B6-992D-F736F699F85D}
+		{FD08AD6B-7F72-4D95-91F2-8790E6025AA0} = {7C027EB1-662A-48A9-81F0-77CD01D92121}
 	EndGlobalSection
 EndGlobal
