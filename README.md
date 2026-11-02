@@ -42,6 +42,22 @@ builder.Services.AddDbContext<ApplicationDbContext>((provider, options) =>
     );
 ```
 
+### Dapper Query Tracking
+
+Inject the scoped `DbCallCounter` and pass it as the first argument of a Dapper call. Calls are counted with any EF Core calls in the same request.
+
+```csharp
+using NimblePros.Metronome;
+
+public class OrdersService(IDbConnection connection, DbCallCounter counter)
+{
+  public Task<IEnumerable<Order>> ListAsync(int customerId) =>
+    connection.QueryAsync<Order>(counter, "SELECT * FROM Orders WHERE CustomerId = @customerId", new { customerId });
+}
+```
+
+Available with sync and async versions: `Query<T>`, `QueryFirst<T>`, `QueryFirstOrDefault<T>`, `QuerySingle<T>`, `QuerySingleOrDefault<T>`, `Execute`, and `ExecuteScalar<T>`. Other Dapper methods, such as multi-mapping queries and `QueryMultiple`, are not tracked.
+
 ### HttpClient Tracking
 
 ```csharp

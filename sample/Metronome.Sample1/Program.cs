@@ -1,6 +1,7 @@
 ﻿using MetricTesting2.Data;
 using MetricTesting2.Pages;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using NimblePros.Metronome;
 
@@ -64,6 +65,13 @@ app.MapGet("/hello", async (IHttpClientFactory factory) =>
   client.BaseAddress = new Uri("https://my-json-server.typicode.com/typicode/demo/");
   await client.GetAsync("posts");
   return Results.Text("Hello World");
+});
+
+app.MapGet("/dapper", async (DbCallCounter counter) =>
+{
+  await using var connection = new SqliteConnection(connectionString);
+  var roleCount = await connection.ExecuteScalarAsync<int>(counter, "SELECT COUNT(*) FROM AspNetRoles");
+  return Results.Text($"Role count: {roleCount}");
 });
 
 

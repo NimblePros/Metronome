@@ -17,7 +17,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       CommandExecutedEventData eventData,
       DbDataReader result)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return base.ReaderExecuted(command, eventData, result);
   }
 
@@ -27,7 +27,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       DbDataReader result,
       CancellationToken cancellationToken = default)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return await base.ReaderExecutedAsync(command, eventData, result, cancellationToken);
   }
 
@@ -36,7 +36,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       CommandExecutedEventData eventData,
       int result)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return base.NonQueryExecuted(command, eventData, result);
   }
 
@@ -46,7 +46,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       int result,
       CancellationToken cancellationToken = default)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return await base.NonQueryExecutedAsync(command, eventData, result, cancellationToken);
   }
 
@@ -55,7 +55,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       CommandExecutedEventData eventData,
       object result)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return base.ScalarExecuted(command, eventData, result);
   }
 
@@ -65,13 +65,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
       object result,
       CancellationToken cancellationToken = default)
   {
-    TrackCall(eventData.Duration);
+    _counter.RecordCall(eventData.Duration);
     return await base.ScalarExecutedAsync(command, eventData, result, cancellationToken);
-  }
-
-  private void TrackCall(TimeSpan duration)
-  {
-    _counter.CallCount++;
-    _counter.TotalTimeSpan += duration;
   }
 }
