@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net10.0;net11.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -18,9 +18,14 @@
     <RepositoryUrl>https://github.com/NimblePros/Metronome</RepositoryUrl>
     <PackageTags>performance metrics timing logging diagnostics dataaccess</PackageTags>
     <PackageReleaseNotes>
-      * Now it's on net8
+      * Targets net10.0 and net11.0
+      * Adds Dapper extensions that track db calls
+      * AddMetronome() registers IHttpContextAccessor, so apps without Identity work
+      * HTTP calls made outside a request are no longer an error, and concurrent calls are all counted
+      * Fixes the format of the NimblePros.Metronome response header
+      * Moves DbCallCountingInterceptor into the NimblePros.Metronome namespace
     </PackageReleaseNotes>
-    <Version>0.4.1</Version>
+    <Version>0.5.0</Version>
     <AssemblyName>NimblePros.Metronome</AssemblyName>
     <PackageIcon>icon.png</PackageIcon>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -31,15 +36,21 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.89" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Dapper" Version="2.1.100" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.404" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net11.0'">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="11.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+    <InternalsVisibleTo Include="NimblePros.Metronome.Tests" />
   </ItemGroup>
 
   <ItemGroup>

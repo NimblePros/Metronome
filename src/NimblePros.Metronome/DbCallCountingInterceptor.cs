@@ -1,7 +1,7 @@
 ﻿using System.Data.Common;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-using NimblePros.Metronome;
+namespace NimblePros.Metronome;
 
 public class DbCallCountingInterceptor : DbCommandInterceptor
 {
@@ -50,10 +50,10 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
     return await base.NonQueryExecutedAsync(command, eventData, result, cancellationToken);
   }
 
-  public override object ScalarExecuted(
+  public override object? ScalarExecuted(
       DbCommand command,
       CommandExecutedEventData eventData,
-      object result)
+      object? result)
   {
     _counter.RecordCall(eventData.Duration);
     return base.ScalarExecuted(command, eventData, result);
@@ -62,7 +62,7 @@ public class DbCallCountingInterceptor : DbCommandInterceptor
   public override async ValueTask<object?> ScalarExecutedAsync(
       DbCommand command,
       CommandExecutedEventData eventData,
-      object result,
+      object? result,
       CancellationToken cancellationToken = default)
   {
     _counter.RecordCall(eventData.Duration);
