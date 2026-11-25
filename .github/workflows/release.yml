@@ -1,5 +1,10 @@
 name: Release to Nuget
 
+# Publishes the package when a GitHub release is published. Prereleases and drafts are not published.
+# Authenticates with NuGet trusted publishing (OIDC), so no long-lived API key is stored in the repo.
+# Setup: create a trusted publishing policy on nuget.org for this repo and this workflow file
+# (release.yml), and set the repository variable NUGET_USER to the nuget.org username that owns it.
+
 on:
   release:
     types: [published]
@@ -8,8 +13,12 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  publish:
+    if: ${{ !github.event.release.prerelease }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # required to request the OIDC token for trusted publishing
 
     steps:
     - name: Checkout
@@ -20,11 +29,30 @@ jobs:
         dotnet-version: |
           10.x
           11.x
+    - name: Check release tag matches package version
+      env:
+        TAG: ${{ github.event.release.tag_name }}
+      run: |
+        version=$(dotnet msbuild src/NimblePros.Metronome/NimblePros.Metronome.csproj -getProperty:Version)
+        if [ "${TAG#v}" != "$version" ]; then
+          echo "::error::Release tag '$TAG' does not match the package version '$version' in NimblePros.Metronome.csproj."
+          exit 1
+        fi
     - name: Build
       run: dotnet build ci.slnf --configuration Release
     - name: Test
       run: dotnet test ci.slnf --configuration Release --no-build
     - name: Pack
       run: dotnet pack src/NimblePros.Metronome/NimblePros.Metronome.csproj --configuration Release --no-build --output artifacts
+    - name: Check NUGET_USER is set
+      if: ${{ vars.NUGET_USER == '' }}
+      run: |
+        echo "::error::Set the repository variable NUGET_USER to the nuget.org username that owns the trusted publishing policy."
+        exit 1
+    - name: NuGet login (trusted publishing)
+      id: login
+      uses: NuGet/login@v1
+      with:
+        user: ${{ vars.NUGET_USER }}
     - name: Push to NuGet
-      run: dotnet nuget push "artifacts/*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push "artifacts/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
