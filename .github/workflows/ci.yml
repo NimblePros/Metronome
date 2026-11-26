@@ -22,9 +22,9 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v6
       with:
         dotnet-version: |
           10.x
@@ -36,7 +36,7 @@ jobs:
     - name: Pack
       run: dotnet pack src/NimblePros.Metronome/NimblePros.Metronome.csproj --configuration Release --no-build --output artifacts
     - name: Upload package
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: nupkg
         path: artifacts/*.nupkg
